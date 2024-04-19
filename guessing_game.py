@@ -64,11 +64,11 @@ while True :
             print(f"'{user_letter}' is not in the word.. ")
     
     else :
-        print("🧙‍♀️ No.")
+        print("\n🧙‍♀️ No.")
         time.sleep(1)
         continue
 
     if "_" not in guessed_word:
-        print("\n🎉🎉 You've guessed the word correctly 🔮")
+        print(f"\n🎉🎉 You've guessed the word {word} correctly 🔮")
         break
 
