@@ -27,9 +27,7 @@ while True:
     ask_user = input(f"Your name is {user_name}. Do you want to keep it ? \n(yes/y or no/n)\n")
     
     if ask_user in ["yes", "y"]:
-        print(":)")
-        time.sleep(1)
-        print("Great !")
+        print(":) great !")
         break
 
     elif ask_user in ["no", "n"]:
@@ -71,6 +69,6 @@ while True :
         continue
 
     if "_" not in guessed_word:
-        print("🎉🎉 You've guessed the word correctly 🔮")
+        print("\n🎉🎉 You've guessed the word correctly 🔮")
         break
 
