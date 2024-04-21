@@ -23,7 +23,7 @@ guessed_word = ["_"] * len(word)
 while True:
     user_name = input("Enter your name: ")
 
-    ask_user = input(f"\nYour name is {user_name}. Do you want to keep it ? \n(yes/y or no/n) : ")
+    ask_user = input(f"\nYour name is {user_name}. \nDo you want to keep it ? (yes/y or no/n) : ")
     
     if ask_user in ["yes", "y"]:
         print(":)")
