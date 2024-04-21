@@ -18,17 +18,15 @@ def get_word():
 
 word = get_word()
 word_length = len(word)
-word_letter_by_letter = [letter for letter in (word)]
 guessed_word = ["_"] * len(word)
 
 while True:
     user_name = input("Enter your name: ")
 
-    ask_user = input(f"Your name is {user_name}. Do you want to keep it ? \n(yes/y or no/n)\n")
+    ask_user = input(f"\nYour name is {user_name}. Do you want to keep it ? \n(yes/y or no/n) : ")
     
     if ask_user in ["yes", "y"]:
         print(":)")
-        time.sleep(1)
         print("Great !")
         break
 
@@ -44,33 +42,60 @@ print("Let's go ! ")
 get_word()
 
 time.sleep(1)
-print("🔮 A word has been carefully picked out 🔮")
-print (f"The number of characters in your word is {word_length}" )
-time.sleep(2)
+print("🔮 A word has been picked out 🔮")
+time.sleep(1)
 print(f"Good luck {user_name} ! ☘️ \n")
 time.sleep(1)
 
 
-
 while True :
-    print(" ".join(guessed_word))
 
-    user_letter = input("\n🔮 Enter a letter : ").lower()
-    if user_letter.isalpha()and len(user_letter) == 1 :
-        if user_letter in word :
-            for i in range(len(word)):
-                if word[i] == user_letter:
-                    guessed_word[i] = user_letter
+    print (f"The number of characters in your word is {word_length}" )
+
+    while True :
+
+        print(" ".join(guessed_word))
+
+        user_letter = input("\n🔮 Enter a letter : ").lower()
+        if user_letter.isalpha()and len(user_letter) == 1 :
+            if user_letter in word :
+                for i in range(len(word)):
+                    if word[i] == user_letter:
+                        guessed_word[i] = user_letter
         
-        else:
-            print(f"'{user_letter}' is not in the word.. ")
+            else:
+                print(f"'{user_letter}' is not in the word.. ")
     
-    else :
-        print("🧙‍♀️ No.")
+        else :
+            print("\n 🧙‍♀️ No\n")
+            time.sleep(1)
+            continue
+
+        if "_" not in guessed_word:
+            guessed_word_string = (" ".join(guessed_word))
+            print("\n", guessed_word_string.upper(), "🔮")
+            print(f"\n🎉🎉 You've guessed the word {word} correctly 🔮")
+            break
+
+    if "_" not in guessed_word :
         time.sleep(1)
-        continue
+        ask_user = input("Play again ?\n(yes/y or no/n) : \n")
+    
+        if ask_user in ["yes", "y"]:
+            print("Let's go !")
+            time.sleep(1)
+            word = get_word()
+            word_length = len(word)
+            guessed_word = ["_"] * len(word)
+            print("🔮 A new word has been picked out 🔮\n")
+            time.sleep(1)
+            continue
+            
+        elif ask_user in ["no","n"]:
+            time.sleep(1)
+            print("Bye 🍄")
+            quit()
 
-    if "_" not in guessed_word:
-        print("🎉🎉 You've guessed the word correctly 🔮")
-        break
-
+        else :
+            print("Please enter 'yes' or 'y' to play again or 'no' or 'n' to leave ")
+    
