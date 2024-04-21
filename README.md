@@ -13,5 +13,4 @@
 
 **Future Improvements**
 - Update widgets placement
-- Fising entry key binding
 - Rearranging code to improve readability
