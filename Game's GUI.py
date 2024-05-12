@@ -26,8 +26,8 @@ def conclude_get_name(event=None):
     no_button.pack_forget()
     greeting_text.config(text=f"Great :) Welcome, {user_name}!")
     greeting_text.pack()
-    window.after(1700, lambda: greeting_text.pack_forget())
-    window.after(2000, lambda: ask_start())
+    window.after(1500, lambda: greeting_text.pack_forget())
+    window.after(1750, lambda: ask_start())
 
 def ask_start(event=None):
     ask_start_text.config(text="Do you want do begin ?")
@@ -48,11 +48,13 @@ def random_letters_gen():
     letters_gen_showing_up.config(text=random_letters)
     window.after(125, random_letters_gen)
 
-def game(event=None):
+def begin(event=None):
     ask_start_text.pack_forget()
     start_button.pack_forget()
     leave_button.pack_forget()
     random_letters_gen()
+    window.after(2500, lambda: letters_gen_showing_up.pack_forget())
+    
 
 def leaving():
     ask_start_text.forget()
@@ -80,7 +82,7 @@ submit_button.pack()
 
 yes_button = tkinter.Button(window, text="Yes", command=conclude_get_name)
 no_button = tkinter.Button(window, text="No", command=ask_name_again)
-start_button = tkinter.Button(window, text="Start", command=game)
+start_button = tkinter.Button(window, text="Start", command=begin)
 leave_button = tkinter.Button(window, text="Leave", command=leaving)
 
 greeting_text = tkinter.Label(window)
