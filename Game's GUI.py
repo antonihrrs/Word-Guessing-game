@@ -1,4 +1,6 @@
 import tkinter
+import random
+import string
 
 def get_name(event=None):
     global user_name
@@ -10,7 +12,7 @@ def get_name(event=None):
     yes_button.pack()
     no_button.pack()
 
-def ask_name_again():
+def ask_name_again(event=None):
     instruction_text.config(text="Enter your name : ")
     user_box.pack()
     submit_button.pack()
@@ -33,12 +35,24 @@ def ask_start(event=None):
     start_button.pack()
     leave_button.pack()
 
+def get_letters():
+    letters = ""
+    for _ in range(1):
+        line = " ".join(random.choices(string.ascii_lowercase, k=12))
+        letters += line + "\n"
+    return letters
+
+def random_letters_gen():
+    random_letters = get_letters()
+    letters_gen.set(random_letters)
+    letters_gen_showing_up.config(text=random_letters)
+    window.after(125, random_letters_gen)
+
 def game(event=None):
     ask_start_text.pack_forget()
     start_button.pack_forget()
     leave_button.pack_forget()
-    game_placeholder_text.config(text="The game will be here soon 🔮")
-    game_placeholder_text.pack()
+    random_letters_gen()
 
 def leaving():
     ask_start_text.forget()
@@ -74,6 +88,8 @@ ask_start_text = tkinter.Label(window)
 
 leave_text = tkinter.Label(window)
 
-game_placeholder_text = tkinter.Label(window)
+letters_gen = tkinter.StringVar()
+letters_gen_showing_up = tkinter.Label(window, textvariable=letters_gen)
+letters_gen_showing_up.pack()
 
 window.mainloop()
