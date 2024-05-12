@@ -35,10 +35,18 @@ def ask_start(event=None):
     start_button.pack()
     leave_button.pack()
 
+def leaving():
+    ask_start_text.forget()
+    start_button.forget()
+    leave_button.forget()
+    leave_text.config(text="Bye felicia 🍄")
+    leave_text.pack()
+    window.after(2000, lambda: window.destroy())
+
 def get_letters():
     letters = ""
     for _ in range(1):
-        line = " ".join(random.choices(string.ascii_lowercase, k=12))
+        line = " ".join(random.choices(string.ascii_lowercase, k=14))
         letters += line + "\n"
     return letters
 
@@ -53,16 +61,12 @@ def begin(event=None):
     start_button.pack_forget()
     leave_button.pack_forget()
     random_letters_gen()
-    window.after(2500, lambda: letters_gen_showing_up.pack_forget())
-    
+    window.after(2000, lambda: letters_gen_showing_up.pack_forget())
+    window.after(2450, lambda: begin_word_message())
 
-def leaving():
-    ask_start_text.forget()
-    start_button.forget()
-    leave_button.forget()
-    leave_text.config(text="Bye felicia 🍄")
-    leave_text.pack()
-    window.after(2000, lambda: window.destroy())
+def begin_word_message():
+    word_text.config(text="🔮 A word has been picked out 🔮")
+    word_text.pack()
 
 
 window = tkinter.Tk()
