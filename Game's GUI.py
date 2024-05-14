@@ -6,7 +6,7 @@ window = tkinter.Tk()
 window.title("🔮 Guess them all 🔮")
 window.geometry("500x300")
 
-words_list = ["infrastructure","compactness", "topology", "transcendence", "divination", "mmniscient", "effervescent", 
+words_list = ["infrastructure","compactness", "topology", "transcendence", "divination", "ommniscient", "effervescent", 
              "echolocation", "vicissitudes", "homeomorphism", "multifariousness", "acupuncture", "malevolent", "quintessential", "promiscuous",
               "ephemeral", "luminious", "cacophony", "rehabilitation", "testimony", "encryption", "jurisdiction", "prescription", "thermodynamic",
                "accreditation", "biodegradable", "sustainability", "segmentation", "psychopathology", "aesthetic", "correspondent", "cultivation",
