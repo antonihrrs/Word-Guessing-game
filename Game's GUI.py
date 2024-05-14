@@ -113,7 +113,7 @@ def word_lengh_show_up():
 def blank_spaces():
     letters_by_letters.config(text="")
     for i in word:
-        letters_by_letters.config(text=letters_by_letters.cget("text") + " _ " + "\n")
+        letters_by_letters.config(text=letters_by_letters.cget("text") + " _ ")
     letters_by_letters.pack()
 
 def user_guess_box():
