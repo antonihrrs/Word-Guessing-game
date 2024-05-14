@@ -113,8 +113,12 @@ def word_lengh_show_up():
 def blank_spaces():
     letters_by_letters.config(text="")
     for i in word:
-        letters_by_letters.config(text=letters_by_letters.cget("text") + " _ ")
+        letters_by_letters.config(text=letters_by_letters.cget("text") + " _ " + "\n")
     letters_by_letters.pack()
+
+def user_guess_box():
+    user_box_guess = tkinter.Entry(window)
+    user_box_guess.pack()
 
 tries = 0
 def tries_nb():
@@ -124,8 +128,7 @@ def tries_nb():
 def game():
     word_text.pack_forget()
     window.after(500, lambda: blank_spaces())
-
-
+    window.after(500, lambda: user_guess_box())
 
 user_box = tkinter.Entry(window)
 user_box.place(anchor="center")
