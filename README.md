@@ -1,4 +1,5 @@
 **Description**
+
 "Guess Them All" is a Python game built using the tkinter library. It's a word guessing game where the player has to guess a randomly chosen word. The game provides visual feedback through its GUI and allows the player to interact with various widgets.
 
 
