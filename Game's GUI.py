@@ -188,6 +188,9 @@ def play_again_ask():
     window.after(1400, lambda:leave_button.pack())
 
 def play_again_clicked():
+    global tries
+    tries = 0
+    tries_nb()
     play_again_button.forget()
     end_message.forget()
     number_of_tries_message.forget()
@@ -204,9 +207,11 @@ def game():
 
 user_box = tkinter.Entry(window)
 user_box.place(anchor="center")
+user_box.bind("<Return>", get_name)
 user_box.pack()
 
-user_box.bind("<Return>", get_name)
+user_box_guess = tkinter.Entry(window)
+user_box_guess.bind("<Return>", check)
 
 submit_button = tkinter.Button(window, text="Submit", command=get_name)
 submit_button.place(anchor="center")
