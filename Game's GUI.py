@@ -121,7 +121,7 @@ def tries_nb():
     global tries
     number_of_tries.config(text= f"Tries = {tries}")
 
-def check():
+def check(event=None):
     global tries
     global guessed_word
     global display_guessed_word
