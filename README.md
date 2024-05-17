@@ -13,5 +13,4 @@
 
 **Future Improvements**
 - Update widgets placement
-- Add Leave button somewhere at all time to allow player to quit the game anytime
 - Rearranging code to improve readability
