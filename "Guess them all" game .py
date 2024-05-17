@@ -81,7 +81,7 @@ def random_letters_gen():
     letters_gen_showing_up.config(text=random_letters)
     window.after(125, random_letters_gen)
 
-def begin(event=None):
+def begin():
     ask_start_text.pack_forget()
     start_button.pack_forget()
     leave_button.pack_forget()
@@ -187,10 +187,16 @@ def play_again_ask():
     window.after(1200, lambda: play_again_button.pack())
     window.after(1400, lambda:leave_button.pack())
 
-def play_again_clicked():
-    global tries
-    tries = 0
+def reset_game():
+    global word, word_length, guessed_word, tries
+    word = get_word()
+    word_length = len(word)
+    guessed_word = ["_"] * len(word)
+    tries = 0 
     tries_nb()
+  
+def play_again_clicked():
+    reset_game()
     play_again_button.forget()
     end_message.forget()
     number_of_tries_message.forget()
