@@ -4,7 +4,11 @@ import string
 
 window = tkinter.Tk()
 window.title("🔮 Guess them all 🔮")
-window.geometry("500x300")
+window.geometry("500x300+406+230")
+left_side_bg = tkinter.Label(fg="white", bg="#A7BCD9", width=8)
+left_side_bg.pack(side="left", fill="y")
+right_side_bg = tkinter.Label(fg="white", bg="#A7BCD9", width=8)
+right_side_bg.pack(side="right", fill="y")
 
 words_list = ["infrastructure","compactness", "topology", "transcendence", "divination", "omniscient", "effervescent", 
              "echolocation", "vicissitudes", "homeomorphism", "multifariousness", "acupuncture", "malevolent", "quintessential", "promiscuous",
@@ -14,8 +18,7 @@ words_list = ["infrastructure","compactness", "topology", "transcendence", "divi
                   "melody", "persuasion", "competition", "quest", "elephant", "precious", "beautiful", "horticulture", "contradiction", "tornado", "fiction",
                    "playfulness", "component", "honorific", "electronic", "intelligence", "authoritarianism", "fluctuation", ]
 
-instruction_text = tkinter.Label(window, text="Enter your name : ")
-instruction_text.place(anchor="center")
+instruction_text = tkinter.Label(window, text="Enter your name : ", font=("",16))
 instruction_text.pack()
 
 def get_name(event=None):
@@ -54,7 +57,7 @@ def conclude_get_name(event=None):
     window.after(1600, lambda: corner_name())
     window.after(1750, lambda: ask_start())
 
-def ask_start(event=None):
+def ask_start():
     ask_start_text.config(text="Do you want do begin ?")
     ask_start_text.pack()
     start_button.pack()
@@ -85,7 +88,6 @@ def begin():
     ask_start_text.pack_forget()
     start_button.pack_forget()
     leave_button.pack_forget()
-    wizard_emoji.pack_forget()
     random_letters_gen()
     window.after(2000, lambda: letters_gen_showing_up.pack_forget())
     window.after(2450, lambda: begin_word_message())
@@ -229,31 +231,32 @@ start_button = tkinter.Button(window, text="Start", command=begin)
 leave_button = tkinter.Button(window, text="Leave", command=leaving)
 check_button = tkinter.Button(window, text="Check", anchor="s", command=check)
 play_again_button = tkinter.Button(window, text="Pay again", command=play_again_clicked)
+leave_corner = tkinter.Button(window, text="Leave", command=leaving, fg="Black", bg="white")
 
 letters_gen = tkinter.StringVar()
 letters_gen_showing_up = tkinter.Label(window, textvariable=letters_gen)
 letters_gen_showing_up.pack()
 
-wizard_emoji = tkinter.Label(window)
+wizard_emoji = tkinter.Label(window, font=("",49))
 wizard_emoji.place(anchor="center")
 
-name_of_user = tkinter.Label()
-name_of_user.place(x=15, y=5, anchor="nw")
+name_of_user = tkinter.Label(window, bg="#A7BCD9", fg="black")
+name_of_user.place(x=5, y=5, anchor="nw")
 
-number_of_tries = tkinter.Label()
-number_of_tries.place(x=15, y=25, anchor="nw")
+number_of_tries = tkinter.Label(window, bg="#A7BCD9", fg="black")
+number_of_tries.place(x=5, y=25, anchor="nw")
 
-greeting_text = tkinter.Label(window)
-ask_start_text = tkinter.Label(window)
-leave_text = tkinter.Label(window)
-word_text = tkinter.Label(window)
-guessed_word = tkinter.Label(window)
-character_number = tkinter.Label(window)
-letters_by_letters = tkinter.Label(window)
-word_lengh_text = tkinter.Label(window)
-letter_not_in_word = tkinter.Label(window)
-nope_message = tkinter.Label(window)
-end_message =tkinter.Label(window)
-play_again_message = tkinter.Label(window)
+greeting_text = tkinter.Label(window, font=("",16))
+ask_start_text = tkinter.Label(window, font=("",16))
+leave_text = tkinter.Label(window, font=("",16))
+word_text = tkinter.Label(window, font=("",16))
+guessed_word = tkinter.Label(window, font=("",16))
+character_number = tkinter.Label(window, font=("",16))
+letters_by_letters = tkinter.Label(window, font=("",16))
+word_lengh_text = tkinter.Label(window, font=("",16))
+letter_not_in_word = tkinter.Label(window, font=("",16))
+nope_message = tkinter.Label(window, font=("",16))
+end_message =tkinter.Label(window, font=("",16))
+play_again_message = tkinter.Label(window, font=("",16))
 
 window.mainloop()
