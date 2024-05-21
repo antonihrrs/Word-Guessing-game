@@ -3,8 +3,8 @@ import random
 import string
 
 window = tkinter.Tk()
-window.title("🔮 Guess them all 🔮")
-window.geometry("500x300+406+230")
+window.title("🔮 Guess them all 🔮") 
+window.geometry("525x300+460+230")
 left_side_bg = tkinter.Label(fg="white", bg="#A7BCD9", width=8)
 left_side_bg.pack(side="left", fill="y")
 right_side_bg = tkinter.Label(fg="white", bg="#A7BCD9", width=8)
@@ -25,14 +25,16 @@ def get_name(event=None):
     global user_name
     user_name = user_box.get()
     user_box.delete(0, 'end')
-    instruction_text.config(text=f"Your name is {user_name}. Do you want to keep it?")
     user_box.pack_forget()
     submit_button.pack_forget()
+    instruction_text.config(text=f"Your name is {user_name}.\nDo you want to keep it?")
     yes_button.pack()
     no_button.pack()
+    user_box.unbind("<Return>", get_name)
 
 def ask_name_again(event=None):
     instruction_text.config(text="Enter your name : ")
+    user_box.bind("<Return>", get_name)
     user_box.pack()
     submit_button.pack()
     yes_button.pack_forget()
@@ -53,9 +55,9 @@ def conclude_get_name(event=None):
     wizard()
     greeting_text.config(text=f"Hi {user_name} ! Nice to meet you !")
     greeting_text.pack()
-    window.after(1500, lambda: greeting_text.pack_forget())
+    window.after(1600, lambda: greeting_text.pack_forget())
     window.after(1600, lambda: corner_name())
-    window.after(1750, lambda: ask_start())
+    window.after(1700, lambda: ask_start())
 
 def ask_start():
     ask_start_text.config(text="Do you want do begin ?")
@@ -84,12 +86,12 @@ def random_letters_gen():
     letters_gen_showing_up.config(text=random_letters)
     window.after(125, random_letters_gen)
 
-def begin():
-    ask_start_text.pack_forget()
-    start_button.pack_forget()
-    leave_button.pack_forget()
+def begin(event=None):
+    ask_start_text.forget()
+    start_button.forget()
+    leave_button.forget()
     random_letters_gen()
-    window.after(2000, lambda: letters_gen_showing_up.pack_forget())
+    window.after(2200, lambda: letters_gen_showing_up.forget())
     window.after(2450, lambda: begin_word_message())
 
 def begin_word_message():
@@ -121,7 +123,7 @@ def blank_spaces():
 tries = 0
 def tries_nb():
     global tries
-    number_of_tries.config(text= f"Tries = {tries}")
+    number_of_tries_display.config(text= f"Tries: {tries}")
 
 def check(event=None):
     global tries
@@ -129,7 +131,7 @@ def check(event=None):
     global display_guessed_word
 
     user_letter = user_box_guess.get()
-    check_button.pack()
+    
     if "_" in guessed_word:
 
         if user_letter.isalpha()and len(user_letter) == 1 :
@@ -160,6 +162,7 @@ def check(event=None):
         check_button.forget()
         user_box_guess.forget()
         letters_by_letters.forget()
+        leave_corner.forget()
         end_message.config(text=f"Congrats {user_name} ✨ \nYou've guessed the word '{word}' correctly !")
         end_message.pack()
         window.after(2000, lambda: happy_end_message())
@@ -182,7 +185,7 @@ def happy_end_message():
         number_of_tries_message.pack()
     
     window.after(2500, lambda:play_again_ask())
-
+    
 def play_again_ask():
     play_again_message.config(text="Play again ?")
     play_again_message.pack()
@@ -196,7 +199,7 @@ def reset_game():
     guessed_word = ["_"] * len(word)
     tries = 0 
     tries_nb()
-  
+
 def play_again_clicked():
     reset_game()
     play_again_button.forget()
@@ -206,23 +209,22 @@ def play_again_clicked():
     play_again_message.forget()
     letters_gen_showing_up.pack()
     begin()
-  
+
 def game():
     word_text.pack_forget()
     window.after(500, lambda: blank_spaces())
-    window.after(500, lambda: user_guess_box())
+    window.after(500, lambda: user_box_guess.pack())
     check_button.pack()
+    leave_corner.pack(side="bottom", anchor="se")
 
 user_box = tkinter.Entry(window)
-user_box.place(anchor="center")
 user_box.bind("<Return>", get_name)
-user_box.pack()
+user_box.pack(side="top")
 
 user_box_guess = tkinter.Entry(window)
 user_box_guess.bind("<Return>", check)
 
 submit_button = tkinter.Button(window, text="Submit", command=get_name)
-submit_button.place(anchor="center")
 submit_button.pack()
 
 yes_button = tkinter.Button(window, text="Yes", command=conclude_get_name)
@@ -234,7 +236,7 @@ play_again_button = tkinter.Button(window, text="Pay again", command=play_again_
 leave_corner = tkinter.Button(window, text="Leave", command=leaving, fg="Black", bg="white")
 
 letters_gen = tkinter.StringVar()
-letters_gen_showing_up = tkinter.Label(window, textvariable=letters_gen)
+letters_gen_showing_up = tkinter.Label(window, textvariable=letters_gen, font=("",16))
 letters_gen_showing_up.pack()
 
 wizard_emoji = tkinter.Label(window, font=("",49))
@@ -243,14 +245,14 @@ wizard_emoji.place(anchor="center")
 name_of_user = tkinter.Label(window, bg="#A7BCD9", fg="black")
 name_of_user.place(x=5, y=5, anchor="nw")
 
-number_of_tries = tkinter.Label(window, bg="#A7BCD9", fg="black")
-number_of_tries.place(x=5, y=25, anchor="nw")
+number_of_tries_display = tkinter.Label(window, bg="#A7BCD9", fg="black")
+number_of_tries_display.place(x=5, y=25, anchor="nw")
+number_of_tries_message = tkinter.Label(window)
 
 greeting_text = tkinter.Label(window, font=("",16))
 ask_start_text = tkinter.Label(window, font=("",16))
 leave_text = tkinter.Label(window, font=("",16))
 word_text = tkinter.Label(window, font=("",16))
-guessed_word = tkinter.Label(window, font=("",16))
 character_number = tkinter.Label(window, font=("",16))
 letters_by_letters = tkinter.Label(window, font=("",16))
 word_lengh_text = tkinter.Label(window, font=("",16))
