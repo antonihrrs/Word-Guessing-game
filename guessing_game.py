@@ -23,7 +23,7 @@ guessed_word = ["_"] * len(word)
 while True:
     user_name = input("Enter your name: ")
 
-    ask_user = input(f"\nYour name is {user_name}. Do you want to keep it ? \n(yes/y or no/n) : ")
+    ask_user = input(f"\nYour name is {user_name}. \nDo you want to keep it ? (yes/y or no/n) : ")
     
     if ask_user in ["yes", "y"]:
         print(":)")
@@ -47,6 +47,7 @@ time.sleep(1)
 print(f"Good luck {user_name} ! ☘️ \n")
 time.sleep(1)
 
+tries = 0
 
 while True :
 
@@ -57,6 +58,8 @@ while True :
         print(" ".join(guessed_word))
 
         user_letter = input("\n🔮 Enter a letter : ").lower()
+        tries += 1
+      
         if user_letter.isalpha()and len(user_letter) == 1 :
             if user_letter in word :
                 for i in range(len(word)):
@@ -75,6 +78,18 @@ while True :
             guessed_word_string = (" ".join(guessed_word))
             print("\n", guessed_word_string.upper(), "🔮")
             print(f"\n🎉🎉 You've guessed the word {word} correctly 🔮")
+          
+            if tries >= len(word) * 2.5:
+                print(f"Ouch... it took you {tries} tries...\n")
+
+            elif tries <= len(word) * 2.5 and tries >= len(word) * 1.75:
+                print(f"It took you {tries} tries.")
+
+            elif tries <= len(word) * 1.75 and tries >= len(word) * 1.6:
+                print(f"Woah it only took you {tries} tries !")
+
+            else:
+                print(f"🤯 It took you {tries} tries ! 🤯 A M A Z I N G !!\n")
             break
 
     if "_" not in guessed_word :
@@ -87,6 +102,7 @@ while True :
             word = get_word()
             word_length = len(word)
             guessed_word = ["_"] * len(word)
+            tries = 0
             print("🔮 A new word has been picked out 🔮\n")
             time.sleep(1)
             continue
